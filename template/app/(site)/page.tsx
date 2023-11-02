@@ -1,6 +1,6 @@
 'use client'; 
 
-import AuthForm from "@app/components/AuthForm";
+import AuthForm from "@components/AuthForm";
 
 const Home = () => {
   return (

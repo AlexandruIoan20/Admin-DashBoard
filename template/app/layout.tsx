@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'; 
 import ToasterContext from './context/ToasterContext';
 import AuthContext from './context/AuthContext';
+import SettingsButton from './components/SettingsButton';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,11 +17,29 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const activeMenu = false; 
   return (
     <html lang="en">
       <body className={inter.className}>
         <AuthContext>
           <ToasterContext /> 
+          <SettingsButton />
+          { activeMenu ? 
+            ( 
+              <div className = 'w-72 fixed sidebar dark:bg-secondary-dark bg-white'> Sidebar</div>
+            ) :
+            ( 
+              <div className = 'w-0'>Sidebar </div>
+            )
+          }
+          <div
+            className = { 
+               `dark:bg-main-bg bg-main-bg min-h-screen w-full
+              ${activeMenu ? 'md:ml-72' : 'flex-2'}`              
+            }
+          >
+            <div className = 'fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full'> Navbar </div>
+          </div>
           {children}
         </AuthContext>
       </body>
